@@ -80,7 +80,7 @@ environment "config.eager_load = false",
 
 # rvm
 file ".ruby-gemset", "#{app_name}"
-file ".ruby-version", "2.4.2"
+file ".ruby-version", "2.5.0"
 
 after_bundle do
   rails_command("db:create")

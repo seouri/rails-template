@@ -15,7 +15,7 @@ gem_group :development, :test do
 end
 
 gem_group :development do
-  # gem "bullet"
+  gem "bullet"
   gem "bundler-audit", require: false
   gem "dotenv-rails"
   gem "letter_opener_web"

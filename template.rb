@@ -83,7 +83,7 @@ environment "config.eager_load = false",
 file ".ruby-gemset", "#{app_name}"
 file ".ruby-version", "2.5.0"
 run "rvm gemset create #{app_name}"
-run "rvm gemset use #{app_name}"
+run "rvm use 2.5.0@#{app_name}"
 
 after_bundle do
   rails_command("db:create")

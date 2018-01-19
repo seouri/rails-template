@@ -7,6 +7,7 @@ run "bundle config build.nokogiri --use-system-libraries"
 gem_group :development, :test do
   gem "pronto"
   gem "pronto-brakeman", require: false
+  gem "pronto-fasterer", require: false
   gem "pronto-flay", require: false
   gem "pronto-reek", require: false
   gem "pronto-rubocop", require: false

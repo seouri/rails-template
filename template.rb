@@ -9,6 +9,7 @@ gem_group :development, :test do
   gem "pronto-brakeman", require: false
   gem "pronto-fasterer", require: false
   gem "pronto-flay", require: false
+  gem "pronto-rails_best_practices", require: false
   gem "pronto-reek", require: false
   gem "pronto-rubocop", require: false
   gem "pronto-simplecov", require: false

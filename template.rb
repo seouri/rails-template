@@ -21,7 +21,7 @@ gem_group :development do
   gem "bundler-audit", require: false
   gem "dotenv-rails"
   gem "letter_opener_web"
-  gem "rubocop-rails"
+  gem "rubocop-rails", require: false
   gem "ruby_audit", require: false
 end
 

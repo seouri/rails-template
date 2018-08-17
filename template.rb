@@ -227,9 +227,6 @@ file "README.md", <<-CODE
 CODE
 
 after_bundle do
-  run "rvm gemset use #{app_name}"
-  run "gem update bundler"
-  run "gem install nokogiri -- --use-system-libraries=true --with-xml2-include=`xcrun --show-sdk-path`/usr/include/libxml2"
   run "bundle install"
   rails_command("db:create")
   rails_command("db:migrate")

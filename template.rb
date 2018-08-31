@@ -3,6 +3,8 @@ git add: "."
 git commit: "-a -m 'Initial commit'"
 
 gem_group :development, :test do
+  gem "bundler-audit", require: false
+  gem "dotenv-rails"
   gem "pronto-brakeman", require: false
   gem "pronto-fasterer", require: false
   gem "pronto-flay", require: false
@@ -12,14 +14,12 @@ gem_group :development, :test do
   gem "pronto-simplecov", require: false
   gem "pronto", require: false
   gem "pry-rails"
+  gem "ruby_audit", require: false
 end
 
 gem_group :development do
   gem "bullet"
-  gem "bundler-audit", require: false
-  gem "dotenv-rails"
   gem "letter_opener_web"
-  gem "ruby_audit", require: false
 end
 
 gem_group :test do
@@ -54,6 +54,7 @@ end
 file ".env", ""
 file ".env.development", ""
 file ".env.local", ""
+file ".env.test", ""
 run "echo '.env.local' >> .gitignore"
 
 # minitest-ci gem
@@ -81,12 +82,13 @@ Style/ClassAndModuleChildren:
 
 Style/Documentation:
   Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
     - 'app/helpers/application_helper.rb'
     - 'app/mailers/application_mailer.rb'
     - 'app/models/application_record.rb'
     - 'config/application.rb'
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'vendor/**/*'
 
 Style/MixinUsage:
   Exclude:
@@ -96,10 +98,13 @@ CODE
 
 # simplecov gem
 run "echo 'coverage' >> .gitignore"
-environment "config.public_file_server.enabled = false",
-            env: "test"
-environment "config.eager_load = false",
-            env: "test"
+prepend_to_file "test/test_helper.rb", "require 'simplecov'\n"
+
+file ".simplecov", <<-CODE
+SimpleCov.start 'rails' do
+  # any custom configs like groups and filters can be here at a central place
+end
+CODE
 
 # rvm
 file ".ruby-gemset", "#{app_name}"
